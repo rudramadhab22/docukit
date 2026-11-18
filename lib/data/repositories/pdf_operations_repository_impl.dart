@@ -15,14 +15,27 @@ class PdfOperationsRepositoryImpl implements PdfOperationsRepository {
   );
 
   @override
-  Future<Result<String>> merge(List<String> inputPaths, String outputPath) async =>
-      _pending;
+  Future<Result<String>> merge(List<String> inputPaths, String outputPath) async {
+    try {
+      final path = await _pdfDataSource.merge(inputPaths, outputPath);
+      return Success(path);
+    } on AppException catch (e) {
+      return Err(FileFailure(e.message));
+    } catch (_) {
+      return const Err(UnexpectedFailure('Failed to merge PDF files.'));
+    }
+  }
 
   @override
   Future<Result<List<String>>> split(String inputPath, String outputDir) async {
-    return const Err(
-      UnsupportedOperationFailure('This PDF operation arrives in a later phase.'),
-    );
+    try {
+      final paths = await _pdfDataSource.split(inputPath, outputDir);
+      return Success(paths);
+    } on AppException catch (e) {
+      return Err(FileFailure(e.message));
+    } catch (_) {
+      return const Err(UnexpectedFailure('Failed to split PDF.'));
+    }
   }
 
   @override
@@ -30,8 +43,20 @@ class PdfOperationsRepositoryImpl implements PdfOperationsRepository {
     required String inputPath,
     required String outputPath,
     required List<int> pages,
-  }) async =>
-      _pending;
+  }) async {
+    try {
+      final path = await _pdfDataSource.extractPages(
+        inputPath: inputPath,
+        outputPath: outputPath,
+        pages: pages,
+      );
+      return Success(path);
+    } on AppException catch (e) {
+      return Err(FileFailure(e.message));
+    } catch (_) {
+      return const Err(UnexpectedFailure('Failed to extract PDF pages.'));
+    }
+  }
 
   @override
   Future<Result<String>> compress(String inputPath, String outputPath) async =>

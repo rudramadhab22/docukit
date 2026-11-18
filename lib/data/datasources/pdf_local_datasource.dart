@@ -6,18 +6,33 @@ import 'package:pdfx/pdfx.dart';
 import '../../core/errors/exceptions.dart';
 import '../../domain/entities/pdf_metadata.dart';
 import 'pdf_info_parser.dart';
+import 'pdf_structure_engine.dart';
 
 abstract class PdfLocalDataSource {
   Future<PdfMetadata> readMetadata(String inputPath);
 
   Future<int> pageCount(String inputPath);
+
+  Future<String> merge(List<String> inputPaths, String outputPath);
+
+  Future<List<String>> split(String inputPath, String outputDir);
+
+  Future<String> extractPages({
+    required String inputPath,
+    required String outputPath,
+    required List<int> pages,
+  });
 }
 
 class PdfLocalDataSourceImpl implements PdfLocalDataSource {
-  PdfLocalDataSourceImpl({PdfInfoParser parser = const PdfInfoParser()})
-      : _parser = parser;
+  PdfLocalDataSourceImpl({
+    PdfInfoParser parser = const PdfInfoParser(),
+    PdfStructureEngine? structureEngine,
+  })  : _parser = parser,
+        _structureEngine = structureEngine ?? PdfStructureEngine();
 
   final PdfInfoParser _parser;
+  final PdfStructureEngine _structureEngine;
 
   @override
   Future<int> pageCount(String inputPath) async {
@@ -61,5 +76,28 @@ class PdfLocalDataSourceImpl implements PdfLocalDataSource {
     } catch (_) {
       throw const FileException('Failed to read PDF metadata.');
     }
+  }
+
+  @override
+  Future<String> merge(List<String> inputPaths, String outputPath) {
+    return _structureEngine.merge(inputPaths, outputPath);
+  }
+
+  @override
+  Future<List<String>> split(String inputPath, String outputDir) {
+    return _structureEngine.split(inputPath, outputDir);
+  }
+
+  @override
+  Future<String> extractPages({
+    required String inputPath,
+    required String outputPath,
+    required List<int> pages,
+  }) {
+    return _structureEngine.extractPages(
+      inputPath: inputPath,
+      outputPath: outputPath,
+      pages: pages,
+    );
   }
 }

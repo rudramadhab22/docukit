@@ -27,7 +27,7 @@ lib/
 1. Foundation
 2. Core PDF utilities + metadata (pick, preview, inspect)
 3. Conversions (Word→PDF, PDF→Images, Images→PDF)
-4. Structure tools (merge / split / extract)
+4. Structure tools (merge / split / extract pages)
 5. Edit & optimize (compress / rotate / watermark)
 6. Security (protect / unlock)
 7. Polish & ship

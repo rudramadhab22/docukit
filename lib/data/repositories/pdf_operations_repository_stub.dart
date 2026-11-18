@@ -1,8 +1,9 @@
 import '../../core/errors/failures.dart';
 import '../../core/utils/result.dart';
+import '../../domain/entities/pdf_metadata.dart';
 import '../../domain/repositories/pdf_operations_repository.dart';
 
-/// Placeholder until Phase 2–6 engines are plugged in.
+/// Kept for tests / fallback; production uses [PdfOperationsRepositoryImpl].
 class PdfOperationsRepositoryStub implements PdfOperationsRepository {
   static const _pending = Err<String>(
     UnsupportedOperationFailure('PDF engine not connected yet.'),
@@ -64,7 +65,7 @@ class PdfOperationsRepositoryStub implements PdfOperationsRepository {
       _pending;
 
   @override
-  Future<Result<Map<String, String>>> readMetadata(String inputPath) async {
+  Future<Result<PdfMetadata>> readMetadata(String inputPath) async {
     return const Err(
       UnsupportedOperationFailure('Metadata reader not connected yet.'),
     );

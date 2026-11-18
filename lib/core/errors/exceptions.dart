@@ -16,3 +16,7 @@ class UnsupportedOperationException extends AppException {
     super.message = 'This operation is not available yet.',
   ]);
 }
+
+class CancelledException extends AppException {
+  const CancelledException([super.message = 'Cancelled.']);
+}

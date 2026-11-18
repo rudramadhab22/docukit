@@ -23,3 +23,7 @@ final class AuthorizationFailure extends Failure {
     super.message = 'Authorized credentials are required.',
   ]);
 }
+
+final class CancellationFailure extends Failure {
+  const CancellationFailure([super.message = 'Cancelled.']);
+}

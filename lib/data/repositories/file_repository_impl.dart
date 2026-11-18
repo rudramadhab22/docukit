@@ -17,6 +17,8 @@ class FileRepositoryImpl implements FileRepository {
     try {
       final document = await _dataSource.pickSingle(extensions: extensions);
       return Success(document);
+    } on CancelledException {
+      return const Err(CancellationFailure());
     } on AppException catch (e) {
       return Err(FileFailure(e.message));
     } catch (_) {
@@ -31,6 +33,8 @@ class FileRepositoryImpl implements FileRepository {
     try {
       final documents = await _dataSource.pickMultiple(extensions: extensions);
       return Success(documents);
+    } on CancelledException {
+      return const Err(CancellationFailure());
     } on AppException catch (e) {
       return Err(FileFailure(e.message));
     } catch (_) {

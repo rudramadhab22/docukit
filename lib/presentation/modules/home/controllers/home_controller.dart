@@ -21,6 +21,11 @@ class HomeController extends BaseController {
   }
 
   void openTool(DocumentTool tool) {
+    if (tool.isAvailable) {
+      Get.toNamed(tool.route);
+      return;
+    }
+
     Get.toNamed(
       AppRoutes.toolWorkspace,
       arguments: {'toolId': tool.id},

@@ -1,4 +1,5 @@
 import '../../core/utils/result.dart';
+import '../entities/pdf_metadata.dart';
 
 /// PDF structure, edit, and security contracts.
 /// Implementations can swap engines without touching UI.
@@ -39,5 +40,5 @@ abstract class PdfOperationsRepository {
     required String password,
   });
 
-  Future<Result<Map<String, String>>> readMetadata(String inputPath);
+  Future<Result<PdfMetadata>> readMetadata(String inputPath);
 }

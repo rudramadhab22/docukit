@@ -49,6 +49,7 @@ class ToolCatalogService {
           route: AppRoutes.mergePdf,
           phase: DeliveryPhase.structure,
           icon: ToolIcon.mergePdf,
+          isAvailable: true,
         ),
         DocumentTool(
           id: ToolIds.splitPdf,
@@ -58,6 +59,7 @@ class ToolCatalogService {
           route: AppRoutes.splitPdf,
           phase: DeliveryPhase.structure,
           icon: ToolIcon.splitPdf,
+          isAvailable: true,
         ),
         DocumentTool(
           id: ToolIds.extractPages,
@@ -67,6 +69,7 @@ class ToolCatalogService {
           route: AppRoutes.extractPages,
           phase: DeliveryPhase.structure,
           icon: ToolIcon.extractPages,
+          isAvailable: true,
         ),
         DocumentTool(
           id: ToolIds.compressPdf,

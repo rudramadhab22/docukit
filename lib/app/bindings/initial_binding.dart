@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
 
 import '../../data/datasources/file_local_datasource.dart';
+import '../../data/datasources/pdf_local_datasource.dart';
 import '../../data/repositories/conversion_repository_stub.dart';
 import '../../data/repositories/file_repository_impl.dart';
-import '../../data/repositories/pdf_operations_repository_stub.dart';
+import '../../data/repositories/pdf_operations_repository_impl.dart';
 import '../../domain/repositories/conversion_repository.dart';
 import '../../domain/repositories/file_repository.dart';
 import '../../domain/repositories/pdf_operations_repository.dart';
@@ -20,14 +21,18 @@ class InitialBinding extends Bindings {
       fenix: true,
     );
 
+    Get.lazyPut<PdfLocalDataSource>(
+      PdfLocalDataSourceImpl.new,
+      fenix: true,
+    );
+
     Get.lazyPut<FileRepository>(
       () => FileRepositoryImpl(Get.find<FileLocalDataSource>()),
       fenix: true,
     );
 
-    // Concrete PDF engines plug in later; UI depends only on these contracts.
     Get.lazyPut<PdfOperationsRepository>(
-      PdfOperationsRepositoryStub.new,
+      () => PdfOperationsRepositoryImpl(Get.find<PdfLocalDataSource>()),
       fenix: true,
     );
 

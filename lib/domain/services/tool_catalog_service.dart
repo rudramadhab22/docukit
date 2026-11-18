@@ -118,6 +118,7 @@ class ToolCatalogService {
           route: AppRoutes.metadata,
           phase: DeliveryPhase.coreUtilities,
           icon: ToolIcon.metadata,
+          isAvailable: true,
         ),
       ];
 

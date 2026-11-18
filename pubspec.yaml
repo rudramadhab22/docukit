@@ -11,6 +11,10 @@ dependencies:
     sdk: flutter
   cupertino_icons: ^1.0.8
   get: ^4.7.2
+  file_picker: ^13.4.0
+  path_provider: ^2.1.6
+  path: ^1.9.1
+  pdfx: ^2.11.0
 
 dev_dependencies:
   flutter_test:

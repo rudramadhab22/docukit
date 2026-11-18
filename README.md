@@ -24,8 +24,8 @@ lib/
 
 ## Delivery phases
 
-1. Foundation (this commit)
-2. Core PDF utilities + metadata
+1. Foundation
+2. Core PDF utilities + metadata (pick, preview, inspect)
 3. Conversions
 4. Structure tools (merge / split / extract)
 5. Edit & optimize (compress / rotate / watermark)

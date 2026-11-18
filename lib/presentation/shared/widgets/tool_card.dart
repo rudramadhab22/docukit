@@ -50,13 +50,17 @@ class ToolCard extends StatelessWidget {
                       vertical: 4,
                     ),
                     decoration: BoxDecoration(
-                      color: scheme.secondaryContainer.withValues(alpha: 0.7),
+                      color: tool.isAvailable
+                          ? scheme.primaryContainer.withValues(alpha: 0.8)
+                          : scheme.secondaryContainer.withValues(alpha: 0.7),
                       borderRadius: BorderRadius.circular(999),
                     ),
                     child: Text(
-                      'P${tool.phase.number}',
+                      tool.isAvailable ? 'Ready' : 'P${tool.phase.number}',
                       style: theme.textTheme.labelSmall?.copyWith(
-                        color: scheme.onSecondaryContainer,
+                        color: tool.isAvailable
+                            ? scheme.onPrimaryContainer
+                            : scheme.onSecondaryContainer,
                         fontWeight: FontWeight.w600,
                       ),
                     ),

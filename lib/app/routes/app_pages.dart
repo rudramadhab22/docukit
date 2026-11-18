@@ -1,6 +1,12 @@
 import 'package:get/get.dart';
 
 import '../../core/constants/app_routes.dart';
+import '../../presentation/modules/convert/images_to_pdf/bindings/images_to_pdf_binding.dart';
+import '../../presentation/modules/convert/images_to_pdf/views/images_to_pdf_view.dart';
+import '../../presentation/modules/convert/pdf_to_images/bindings/pdf_to_images_binding.dart';
+import '../../presentation/modules/convert/pdf_to_images/views/pdf_to_images_view.dart';
+import '../../presentation/modules/convert/word_to_pdf/bindings/word_to_pdf_binding.dart';
+import '../../presentation/modules/convert/word_to_pdf/views/word_to_pdf_view.dart';
 import '../../presentation/modules/home/bindings/home_binding.dart';
 import '../../presentation/modules/home/views/home_view.dart';
 import '../../presentation/modules/metadata/bindings/metadata_binding.dart';
@@ -24,6 +30,21 @@ abstract final class AppPages {
       name: AppRoutes.metadata,
       page: MetadataView.new,
       binding: MetadataBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.wordToPdf,
+      page: WordToPdfView.new,
+      binding: WordToPdfBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.pdfToImages,
+      page: PdfToImagesView.new,
+      binding: PdfToImagesBinding(),
+    ),
+    GetPage(
+      name: AppRoutes.imagesToPdf,
+      page: ImagesToPdfView.new,
+      binding: ImagesToPdfBinding(),
     ),
   ];
 }

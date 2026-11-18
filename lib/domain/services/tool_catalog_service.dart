@@ -19,6 +19,7 @@ class ToolCatalogService {
           route: AppRoutes.wordToPdf,
           phase: DeliveryPhase.conversions,
           icon: ToolIcon.wordToPdf,
+          isAvailable: true,
         ),
         DocumentTool(
           id: ToolIds.pdfToImages,
@@ -28,6 +29,7 @@ class ToolCatalogService {
           route: AppRoutes.pdfToImages,
           phase: DeliveryPhase.conversions,
           icon: ToolIcon.pdfToImages,
+          isAvailable: true,
         ),
         DocumentTool(
           id: ToolIds.imagesToPdf,
@@ -37,6 +39,7 @@ class ToolCatalogService {
           route: AppRoutes.imagesToPdf,
           phase: DeliveryPhase.conversions,
           icon: ToolIcon.imagesToPdf,
+          isAvailable: true,
         ),
         DocumentTool(
           id: ToolIds.mergePdf,
